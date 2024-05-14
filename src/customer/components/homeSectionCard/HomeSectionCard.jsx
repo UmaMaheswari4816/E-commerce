@@ -1,9 +1,7 @@
 import React from "react";
 
 const HomeSectionCard = ({ product, addToCart }) => {
-  const handleAddToCart = () => {
-    addToCart(product);
-  };
+
 
   return (
     <div className="cursor-pointer flex flex-col items-center bg-white rounded-lg shadow-lg overflow-hidden w-[15rem] mx-3">
@@ -15,7 +13,7 @@ const HomeSectionCard = ({ product, addToCart }) => {
         <p>{product.title}</p>
         <p>Price: ₹{product.price}</p>
         {/* Call handleAddToCart function onClick */}
-        <button onClick={handleAddToCart} className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
+        <button  className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
           Add to Cart
         </button>
       </div>
