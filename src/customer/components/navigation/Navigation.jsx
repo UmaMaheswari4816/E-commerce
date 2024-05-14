@@ -9,6 +9,7 @@ import LoginF from '../RegisterLogin/LoginF'
 import RegisterF from '../RegisterLogin/RegisterF'
 import HomeCarosal from '../homeCarosal/HomeCarosal'
 import CartPage from '../Cart/CartPage'
+import UserProfile from '../Profile/UserProfile'
 
 
 
@@ -38,6 +39,9 @@ export default function Navigation() {
   };
   const navigateToCartPage = () => {
     setActivePage('cart');
+  };
+  const navigateToProfilePage = () => {
+    setActivePage('profile');
   };
 
 
@@ -95,6 +99,9 @@ export default function Navigation() {
                   <button onClick={navigateToRegisterPage} className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">
                     Create Account
                   </button>
+                  <button onClick={navigateToProfilePage} className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">
+                    Profile
+                  </button>
                 </div>
 
                 
@@ -130,6 +137,7 @@ export default function Navigation() {
       {activePage === 'login' && <LoginF />}
       {activePage === 'register' && <RegisterF />}
       {activePage === 'cart' && <CartPage />}
+      {activePage === 'profile' && <UserProfile />}
       
     </div>
   )
