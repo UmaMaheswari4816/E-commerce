@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom directly
+import AddressPage from "../Address/AddressPage";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -16,21 +18,18 @@ const CartPage = () => {
     });
     setCartItems(updatedCartItems);
   }, []);
-  
-  
- 
 
-const handleAddMore = (index) => {
-  const updatedCartItems = [...cartItems];
-  const existingItemIndex = updatedCartItems.findIndex(item => item.title === cartItems[index].title);
-  if (existingItemIndex !== -1) {
-    updatedCartItems[existingItemIndex].quantity++;
-  } else {
-    updatedCartItems.push({ ...cartItems[index], quantity: 1 });
-  }
-  setCartItems(updatedCartItems);
-  localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-};
+  const handleAddMore = (index) => {
+    const updatedCartItems = [...cartItems];
+    const existingItemIndex = updatedCartItems.findIndex(item => item.title === cartItems[index].title);
+    if (existingItemIndex !== -1) {
+      updatedCartItems[existingItemIndex].quantity++;
+    } else {
+      updatedCartItems.push({ ...cartItems[index], quantity: 1 });
+    }
+    setCartItems(updatedCartItems);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+  };
 
   const handleRemoveOne = (index) => {
     const updatedCartItems = [...cartItems];
@@ -46,10 +45,6 @@ const handleAddMore = (index) => {
     updatedCartItems.splice(index, 1);
     setCartItems(updatedCartItems);
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-  };
-
-  const handleCheckout = () => {
-    // Handle checkout
   };
 
   // Calculate total price
@@ -101,12 +96,7 @@ const handleAddMore = (index) => {
           </ul>
           <div className="flex justify-between mt-4">
             <p className="font-semibold">Total: ₹{totalPrice}</p>
-            <button
-              onClick={handleCheckout}
-              className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
-            >
-              Checkout
-            </button>
+            <Link to="/address" className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Checkout</Link>
           </div>
         </>
       )}

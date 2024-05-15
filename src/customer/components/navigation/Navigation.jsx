@@ -12,6 +12,7 @@ import HomeCarosal from '../homeCarosal/HomeCarosal';
 import CartPage from '../Cart/CartPage';
 import UserProfile from '../Profile/UserProfile';
 import HomePage from '../../pages/homepage/HomePage';
+import AddressPage from '../Address/AddressPage';
 
 export default function Navigation() {
   
@@ -99,6 +100,7 @@ export default function Navigation() {
           <Route path="/register" element={<RegisterF />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/profile" element={<UserProfile />} />
+          <Route path="/address" element={<AddressPage />} />
 
     
         </Routes>
