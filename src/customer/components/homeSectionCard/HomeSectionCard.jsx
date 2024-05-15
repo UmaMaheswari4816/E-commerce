@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from 'react';
 
-const HomeSectionCard = ({ product, addToCart }) => {
+const HomeSectionCard = ({ product }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleAddToCart = () => {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    cartItems.push(product);
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    setIsModalOpen(true); // Show the modal
+  };
 
   return (
     <div className="cursor-pointer flex flex-col items-center bg-white rounded-lg shadow-lg overflow-hidden w-[15rem] mx-3">
@@ -12,10 +19,23 @@ const HomeSectionCard = ({ product, addToCart }) => {
         <h3 className="text-lg font-medium text">{product.brand}</h3>
         <p>{product.title}</p>
         <p>Price: ₹{product.price}</p>
-        {/* Call handleAddToCart function onClick */}
-        <button  className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
+        <button 
+          onClick={handleAddToCart}
+          className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+        >
           Add to Cart
         </button>
+      </div>
+      {/* Modal */}
+      <div className={`fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 ${isModalOpen ? 'flex' : 'hidden'}`}>
+        <div className="relative p-8 mx-auto max-w-md">
+          <div className="bg-white rounded-lg p-8">
+            <p className="text-lg font-semibold mb-4">Item added to cart</p>
+            <button onClick={() => setIsModalOpen(false)} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
+              Close
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
