@@ -11,6 +11,7 @@ import RegisterF from '../RegisterLogin/RegisterF';
 import HomeCarosal from '../homeCarosal/HomeCarosal';
 import CartPage from '../Cart/CartPage';
 import UserProfile from '../Profile/UserProfile';
+import HomePage from '../../pages/homepage/HomePage';
 
 export default function Navigation() {
   return (
@@ -26,7 +27,7 @@ export default function Navigation() {
                {/* Logo */}
                <div className="ml-4 flex lg:ml-0">
 
-                <Link>
+                <Link to="/">
                 <span className="sr-only">Your Company</span>
                  <img
                     className="h-8 w-auto"
@@ -40,9 +41,9 @@ export default function Navigation() {
               <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
                   {/* Women link */}
-                  <Link to="women">Women</Link>
-                  <Link to="men">Men</Link>
-                  <Link to="kids">Kids</Link>
+                  <Link to="/women">Women</Link>
+                  <Link to="/men">Men</Link>
+                  <Link to="/kids">Kids</Link>
                   
                   
                   
@@ -52,9 +53,9 @@ export default function Navigation() {
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
  
-                  <Link to="login">Login</Link>
-                  <Link to="register">Create Account</Link>
-                  <Link to="profile">Profile</Link>
+                  <Link to="/login">Login</Link>
+                  <Link to="/register">Create Account</Link>
+                  <Link to="/profile">Profile</Link>
                 </div>
 
                 
@@ -71,7 +72,7 @@ export default function Navigation() {
                 {/* Cart */}
               <div className="ml-4 flow-root lg:ml-6">
 
-                <Link to="cart">
+                <Link to="/cart">
                 <ShoppingBagIcon
                     className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
@@ -87,7 +88,7 @@ export default function Navigation() {
       </header>
         
         <Routes>
-          <Route path="/" element={<HomeCarosal />} />
+          <Route path="/" element={<HomePage/>} />
           <Route path="/women" element={<WomenProducts />} />
           <Route path="/men" element={<MenProducts />} />
           <Route path="/kids" element={<KidsProducts />} />
