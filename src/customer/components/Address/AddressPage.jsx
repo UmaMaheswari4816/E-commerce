@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-
+import {loadStripe} from '@stripe/stripe-js';
 const AddressPage = () => {
-  // State for form fields
+ 
   const [formData, setFormData] = useState({
     streetAddress: '',
     city: '',
@@ -15,10 +15,10 @@ const AddressPage = () => {
 
   // State for order details
   const [orderDetails, setOrderDetails] = useState({
-    subtotal: 0,
+    subtotal: 100,
     discount: 0,
-    shipping: 0,
-    total: 0
+    shipping: 50,
+    total: 150
   });
 
   // Handle form input change
@@ -31,9 +31,12 @@ const AddressPage = () => {
   };
 
   // Handle place order logic
-  const handlePlaceOrder = () => {
-    // Handle placing order
-  };
+  const handlePlaceOrder = async () => {
+    
+    };
+
+
+
 
   return (
     <div className="container mx-auto mt-8">
