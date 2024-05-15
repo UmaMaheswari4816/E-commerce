@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './RegisterLogin.css'; // Import the CSS file for styling
-
+import { Link } from 'react-router-dom';
+import LoginF from './LoginF';
 const RegisterF = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -8,7 +9,13 @@ const RegisterF = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-
+// Simulate successful login and store user details in local storage
+const userDetails = {
+  email,
+  name,
+  phone
+};
+localStorage.setItem('userDetails', JSON.stringify(userDetails));
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -105,7 +112,7 @@ const RegisterF = () => {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <Link to="/login" className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Register</Link>
       </form>
     </div>
   );

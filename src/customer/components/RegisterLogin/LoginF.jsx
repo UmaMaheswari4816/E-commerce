@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './RegisterLogin.css'; // Import the CSS file for styling
+import { Link } from 'react-router-dom';
 
 const LoginF = () => {
   const [email, setEmail] = useState('');
@@ -23,9 +24,7 @@ const LoginF = () => {
       return;
     }
 
-    // Add your login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+    
 
     // Clear form fields after submission
     setEmail('');
@@ -56,7 +55,8 @@ const LoginF = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <Link to="/" className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Login</Link>
+        
       </form>
     </div>
   );
