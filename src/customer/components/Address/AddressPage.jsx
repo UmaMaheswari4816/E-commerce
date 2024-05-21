@@ -1,15 +1,7 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom directly
-
-import { useLocation } from "react-router-dom";
-//import { useHistory } from 'react-router-dom';
-
+import React, { useState } from 'react';
+import {loadStripe} from '@stripe/stripe-js';
 const AddressPage = () => {
-  // State for form fields
-  const navigate = useNavigate(); 
-  const [cartItems, setCartItems] = useState([]);
+ 
   const [formData, setFormData] = useState({
     streetAddress: "",
     city: "",
@@ -50,10 +42,10 @@ const AddressPage = () => {
 
   // State for order details
   const [orderDetails, setOrderDetails] = useState({
-    subtotal: 0,
+    subtotal: 100,
     discount: 0,
-    shipping: 0,
-    total: totalPrice,
+    shipping: 50,
+    total: 150
   });
 
   // useEffect to update orderDetails when totalPrice changes
