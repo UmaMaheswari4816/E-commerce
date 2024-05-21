@@ -1,7 +1,4 @@
 
-
-
-
 import React from "react";
 import AliceCarousel from "react-alice-carousel";
 import HomeSectionCard from "../homeSectionCard/HomeSectionCard";
@@ -13,13 +10,21 @@ const KidsProducts=()=>{
         720: { items: 3 },
         1024: { items: 5.5 },
     };
-    const items=kidsCloths.slice(0,10).map((item)=><HomeSectionCard product={item}/>)
+    //const items=kidsCloths.slice(0,10).map((item)=><HomeSectionCard product={item}/>)
+
+    const girlItems = kidsCloths.filter(item => item.title === "girl");
+    const fashionItems = kidsCloths.filter(item => item.title === "fashion");
+    const boyItems = kidsCloths.filter(item => item.title === "boy");
+
+    const girlItemsData = girlItems.map((item)=><HomeSectionCard product={item}/>)
+    const fashionItemsData = fashionItems.map((item)=><HomeSectionCard product={item}/>)
+    const boyItemsData = boyItems.map((item)=><HomeSectionCard product={item}/>)
     return (
         
         <div>
             <AliceCarousel
 
-            items={items}
+            items={girlItemsData}
             disableButtonsControls
             autoPlay
             autoPlayInterval={1000}
@@ -28,7 +33,7 @@ const KidsProducts=()=>{
             />
              <AliceCarousel
 
-items={items}
+items={fashionItemsData}
 disableButtonsControls
 autoPlay
 autoPlayInterval={1000}
@@ -37,7 +42,7 @@ responsive={responsive}
 />
 <AliceCarousel
 
-items={items}
+items={boyItemsData }
 disableButtonsControls
 autoPlay
 autoPlayInterval={1000}

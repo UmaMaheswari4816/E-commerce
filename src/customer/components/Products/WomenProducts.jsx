@@ -9,13 +9,20 @@ const WomenProducts=()=>{
         720: { items: 3 },
         1024: { items: 5.5 },
     };
-    const items=womenKurthi.slice(0,10).map((item)=><HomeSectionCard product={item}/>)
+    // const items=womenKurthi.map((item)=><HomeSectionCard product={item}/>)
+    const womenKurthiItems = womenKurthi.filter(item => item.title === "Women Kurthi");
+    const shortTopsItems = womenKurthi.filter(item => item.title === "shortTops");
+    const sareeItems = womenKurthi.filter(item => item.title === "sarees");
+
+    const womenKurthiItemsData = womenKurthiItems.map((item)=><HomeSectionCard product={item}/>)
+    const shortTopsItemsData = shortTopsItems.map((item)=><HomeSectionCard product={item}/>)
+    const sareeItemsData = sareeItems.map((item)=><HomeSectionCard product={item}/>)
     return (
         
         <div>
             <AliceCarousel
 
-            items={items}
+            items={womenKurthiItemsData}
             disableButtonsControls
             autoPlay
             autoPlayInterval={1000}
@@ -24,7 +31,7 @@ const WomenProducts=()=>{
             />
             <AliceCarousel
 
-items={items}
+items={shortTopsItemsData}
 disableButtonsControls
 autoPlay
 autoPlayInterval={1000}
@@ -33,13 +40,13 @@ responsive={responsive}
 />
 <AliceCarousel
 
-            items={items}
+            items={sareeItemsData}
             disableButtonsControls
             autoPlay
             autoPlayInterval={1000}
             infinite
             responsive={responsive}
-            />
+            /> 
         </div>
     )
 }

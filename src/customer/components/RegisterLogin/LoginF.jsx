@@ -1,10 +1,16 @@
+
 import React, { useState } from 'react';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import './RegisterLogin.css'; // Import the CSS file for styling
+//import { HomeCarosal } from "./HomeCarosal";
+
 
 const LoginF = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate=useNavigate()
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -24,13 +30,32 @@ const LoginF = () => {
     }
 
     // Add your login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+    //console.log('Email:', email);
+    //console.log('Password:', password);
 
     // Clear form fields after submission
     setEmail('');
     setPassword('');
     setError('');
+
+    const userData={email,password}
+    //axios.post("http://localhost:8080/login",data).then((resp) => {
+    // console.log(resp.data);
+    // if (resp.data === '200') navigate("/home");
+    // else alert(resp.data.message);
+    //});
+
+    fetch("http://localhost:8080/login",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(userData)
+    }).then(async (resp)=>{
+      const data = await resp.json()
+      console.log(data)
+      if(data.status === '200') navigate("/")
+      else alert(data.message)
+    })
+    
   };
 
   return (
@@ -58,6 +83,15 @@ const LoginF = () => {
         </div>
         <button type="submit">Login</button>
       </form>
+      <div>
+
+      </div>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div>
+            <p>
+                Not have an account yet? <a href="/register" style={{ color: "red" }}>Register</a>
+            </p>
+        </div>
     </div>
   );
 };

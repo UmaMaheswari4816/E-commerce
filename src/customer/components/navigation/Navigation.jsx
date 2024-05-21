@@ -1,7 +1,8 @@
 
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
-import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { UserCircleIcon } from '@heroicons/react/24/outline'; 
 import { BrowserRouter as Router, Routes, Route ,Link} from 'react-router-dom';
 import WomenProducts from '../Products/WomenProducts';
 import MenProducts from '../Products/MenProducts';
@@ -55,32 +56,35 @@ export default function Navigation() {
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
- 
-                  <Link to="/login">Login</Link>
-                  <Link to="/register">Create Account</Link>
-                  <Link to="/profile">Profile</Link>
-                </div>
-
-                
 
                 {/* Search */}
                 <div className="flex lg:ml-6">
+                <input type='search' placeholder='search' style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '5px' }}></input>
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
-                    <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
+                    {/*<MagnifyingGlassIcon className="h-8 w-8" aria-hidden="true" />*/}
                   </a>
                 </div>
+                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+ 
+                  <Link to="/login">
+                  <UserCircleIcon className="h-8 w-8" aria-hidden="true" /></Link>
+                 {/* <Link to="/profile">Profile</Link>*/}
+                </div>
+
+                
 
                 
                 {/* Cart */}
               <div className="ml-4 flow-root lg:ml-6">
 
                 <Link to="/cart">
-                <ShoppingBagIcon
-                    className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                {/*<ShoppingBagIcon
+                    className="h-8 w-8 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
-                  />
+  />*/}           
+                  <ShoppingBagIcon className="h-8 w-8" aria-hidden="true" />
+                  
                   <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"></span>
                   <span className="sr-only">items in cart, view bag</span>
                 </Link>

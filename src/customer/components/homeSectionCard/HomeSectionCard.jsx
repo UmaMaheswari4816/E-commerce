@@ -5,7 +5,11 @@ const HomeSectionCard = ({ product }) => {
 
   const handleAddToCart = () => {
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    cartItems.push(product);
+    const item = {
+      ...product,
+      quantity:1
+    }
+    cartItems.push(item);
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     setIsModalOpen(true); // Show the modal
   };

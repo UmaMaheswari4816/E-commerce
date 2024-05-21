@@ -1,13 +1,41 @@
 import React, { useState } from 'react';
 import './RegisterLogin.css'; // Import the CSS file for styling
 
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const RegisterF = () => {
+  const navigate=useNavigate();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const handleClick=(e)=>{
+    e.preventDefault()
+    const customer={name,phone,email,password,confirmPassword}
+    console.log(customer)
+    console.log("hello")
+    fetch("http://localhost:8080/addCustomer",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(customer)
+    }).then((resp)=>{
+      console.log("new student added");
+      if(resp.status===200){
+        alert("Register Success");
+        navigate("/login");
+      }
+      else{
+        alert("User already exit please Login to your Account");
+        navigate("/login");
+      }
+    })
+    .catch(error=>{
+      console.error('Error :',error);
+    });
+  }
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -105,8 +133,9 @@ const RegisterF = () => {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit" onClick={handleClick}>Register</button>
       </form>
+      
     </div>
   );
 };

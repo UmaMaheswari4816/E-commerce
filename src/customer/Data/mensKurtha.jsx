@@ -1,62 +1,257 @@
 export const mensKurtha=[
     {"image":"https://valintaformens.com/cdn/shop/products/photo_2023-03-27_02-27-21.jpg?v=1681723151",
     "title":"VK EMBRODRY MENS KURTA",
+    "id":51,
 "brand":"MaheswariBehan",
 "price": 5980.99}
     ,
     {"image":"https://manyavar.scene7.com/is/image/manyavar/HP_Persona_Nov_RC_M_10-11-2023-06-41-1?$WT%5FHP%2FMLP%2FWLP%5FHero%5FM$",
     "title":"VK EMBRODRY MENS KURTA",
+    "id":52,
     "brand":"MaheswariBehan",
     "price": 9980.99}
     ,
     {"image":"https://i.pinimg.com/originals/02/41/5b/02415bb1fcf1cb55ad0464da154cc2ca.jpg",
     "title":"VK EMBRODRY MENS KURTA",
+    "id":53,
     "brand":"MaheswariBehan",
     "price": 10980.99}
     ,
     {"image":"https://timesofindia.indiatimes.com/photo/105133339/105133339.jpg",
     "title":"VK EMBRODRY MENS KURTA",
+    "id":54,
     "brand":"MaheswariBehan",
     "price": 5980.99}
     ,
     {"image":"https://valintaformens.com/cdn/shop/products/photo_2023-03-27_02-27-21.jpg?v=1681723151",
     "title":"VK EMBRODRY MENS KURTA",
+    "id":55,
     "brand":"MaheswariBehan",
     "price": 5980.99}
     ,
     {"image":"https://manyavar.scene7.com/is/image/manyavar/HP_Persona_Nov_RC_M_10-11-2023-06-41-1?$WT%5FHP%2FMLP%2FWLP%5FHero%5FM$",
     "title":"VK EMBRODRY MENS KURTA",
+    "id":56,
     "brand":"MaheswariBehan",
     "price": 5980.99}
     ,
     {"image":"https://i.pinimg.com/originals/02/41/5b/02415bb1fcf1cb55ad0464da154cc2ca.jpg",
     "title":"VK EMBRODRY MENS KURTA",
+    "id":57,
     "brand":"MaheswariBehan",
     "price": 5980.99}
     ,
     {"image":"https://timesofindia.indiatimes.com/photo/105133339/105133339.jpg",
     "title":"VK EMBRODRY MENS KURTA",
+    "id":58,
     "brand":"MaheswariBehan",
     "price": 5980.99}
     ,
     {"image":"https://valintaformens.com/cdn/shop/products/photo_2023-03-27_02-27-21.jpg?v=1681723151",
     "title":"VK EMBRODRY MENS KURTA",
+    "id":59,
     "brand":"MaheswariBehan",
     "price": 5980.99}
     ,
     {"image":"https://manyavar.scene7.com/is/image/manyavar/HP_Persona_Nov_RC_M_10-11-2023-06-41-1?$WT%5FHP%2FMLP%2FWLP%5FHero%5FM$",
     "title":"VK EMBRODRY MENS KURTA",
+    "id":60,
     "brand":"MaheswariBehan","price": 5980.99}
     ,
     {"image":"https://i.pinimg.com/originals/02/41/5b/02415bb1fcf1cb55ad0464da154cc2ca.jpg",
     "title":"VK EMBRODRY MENS KURTA",
+    "id":61,
     "brand":"MaheswariBehan",
     "price": 5980.99}
     ,
     {"image":"https://timesofindia.indiatimes.com/photo/105133339/105133339.jpg",
     "title":"VK EMBRODRY MENS KURTA",
+    "id":62,
     "brand":"MaheswariBehan",
-    "price": 5980.99}
+    "price": 5980.99},
+    
+    {"image":"https://www.tistabene.com/cdn/shop/products/KRT-0312A.jpg?v=1694081057",
+    "title":"VK EMBRODRY MENS KURTA",
+    "id":63,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://www.tistabene.com/cdn/shop/products/KRT-0283A.jpg?v=1694081006",
+    "title":"VK EMBRODRY MENS KURTA",
+    "id":64,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbd38Sb0pHoAsNd6sH_I5rDqS-VD_4fytTD8WgMuEq_Q&s",
+    "title":"VK EMBRODRY MENS KURTA",
+    "id":65,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://i.etsystatic.com/19394471/r/il/d02c2f/5299691852/il_570xN.5299691852_j6ue.jpg",
+    "title":"VK EMBRODRY MENS KURTA",
+    "id":66,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://5.imimg.com/data5/ANDROID/Default/2022/2/BW/MO/WE/126543846/product-jpeg-500x500.jpg",
+    "title":"VK EMBRODRY MENS KURTA",
+    "id":67,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://m.media-amazon.com/images/I/71VFs2XrDVL._AC_UY350_.jpg",
+    "title":"jackets",
+    "id":68,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkP-TKf9N5mrBVTwaYf1Ok-GvvwvaDAABCW1LP1-75Qg&s",
+    "title":"jackets",
+    "id":69,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://img1.exportersindia.com/product_images/bc-full/2019/6/3900440/mens-jackets-1560770192-4956493.jpeg",
+    "title":"jackets",
+    "id":70,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzX2cRwv0uwrbK-G3HKFmNgKvHqW7dG1nH3yfiLpE8fg&s",
+    "title":"jackets",
+    "id":71,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT83KFh3LWcVD4mZH3STzLym9T5dHWdcJLyP9ydUlOByQ&s",
+    "title":"jackets",
+    "id":72,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlmQiffiQGC0PC4hPBwdkJ4H6S_N9UB6eK5hMURgP6w&s",
+    "title":"jackets",
+    "id":73,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTji5w6XUEJ25vg4C_iEMzdQd2zQAf-XFV6VEyfL2EOKw&s",
+    "title":"jackets",
+    "id":74,
+    "brand":"Rose",
+    "price": 2500
+    },
+    
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0ULyK5kH-8sb5Nye-wJVgjFYbOmbqVd8SThXTvlUv2g&s",
+    "title":"jackets",
+    "id":75,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_jpsQn0TReHb9lDfMcWeON0p3iQcnj-vxXunX6pRVDQ&s",
+    "title":"jackets",
+    "id":76,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://img4.dhresource.com/webp/m/0x0/f3/albu/km/z/10/7422ecaa-b2d2-4e20-b7a6-84c0ca5e9166.jpg",
+    "title":"jackets",
+    "id":77,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://i.pinimg.com/736x/b8/ea/d7/b8ead72eb31d8918095e83b4fa4cc19e.jpg",
+    "title":"jackets",
+    "id":78,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://assets.ajio.com/medias/sys_master/root/20231128/viW7/65656e56afa4cf41f5a4fc8b/-473Wx593H-469285890-blue-MODEL.jpg",
+    "title":"jackets",
+    "id":78,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjV_jT0FI3epNoPqGIF9NlE_oTO2JvKDFXy1UhpPE6vw&s",
+    "title":"jackets",
+    "id":79,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://img1.exportersindia.com/product_images/bc-full/2022/12/11365493/mens-shirt-1670300430_6647260_1716578.jpeg",
+    "title":"shirts",
+    "id":80,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://assets.ajio.com/medias/sys_master/root/20220817/a5oM/62fd2960f997dd394cffb5d5/-473Wx593H-469281261-white-MODEL.jpg",
+    "title":"shirts",
+    "id":81,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkqjpxzQ2774KXJ6dJdbIcZ80eCHgk1xy4A_VBGecP3Q&s",
+    "title":"shirts",
+    "id":82,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2iD6R9EL8fUrlNAVM1UfkfQhAXCE9fKxlJsvm2qq3DQ&s",
+    "title":"shirts",
+    "id":83,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://fcity.in/images/products/231628088/sspka_512.jpg",
+    "title":"shirts",
+    "id":84,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgyuYaxI6Mp3ttommoWjT15cPRkI8_UpEZ4Svo3BsBnqg59q_QM640nGMxNgGixqdEsi8&usqp=CAU",
+    "title":"shirts",
+    "id":85,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAzgzCn7gfPVv4uXiiF3EmzSbKqcEPqVIZxL-7r-Kdqw&s",
+    "title":"shirts",
+    "id":86,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTipQwx1_IT5WIM1BMw5z24QlgLAjyPu-23cOBXAB7qQ&s",
+    "title":"shirts",
+    "id":87,
+    "brand":"Rose",
+    "price": 2500
+    },
+    
+    {"image":"https://m.media-amazon.com/images/I/31mQ+abSehL.jpg",
+    "title":"shirts",
+    "id":88,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://5.imimg.com/data5/ECOM/Default/2023/9/348267510/SO/JA/DC/117590032/1695901727722-sku-2272-4-500x500.jpg",
+    "title":"shirts",
+    "id":89,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://www.coolcolors.store/cdn/shop/files/29753-2_3.jpg?v=1693901730&width=1200",
+    "title":"shirts",
+    "id":90,
+    "brand":"Rose",
+    "price": 2500
+    },
+    {"image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLjJ0tmsxRNcv9lOn21CKLoN8t3BteVnc0whOJszrprJXuyTGfe_fck49H1KBbO8RiC2o&usqp=CAU",
+    "title":"shirts",
+    "id":91,
+    "brand":"Rose",
+    "price": 2500
+    }
     
 
 
