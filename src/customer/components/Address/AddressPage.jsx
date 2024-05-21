@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import {loadStripe} from '@stripe/stripe-js';
+import { useNavigate } from 'react-router-dom';
+
 const AddressPage = () => {
- 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     streetAddress: "",
     city: "",
@@ -19,7 +20,7 @@ const AddressPage = () => {
     if (paymentOption === "cod") {
       // Display a success message
       alert("Order placed successfully!");
-
+      localStorage.removeItem("cartItems")
       navigate('/');
 
       
@@ -34,7 +35,7 @@ const AddressPage = () => {
   const handlePaymentOption = (e) => {
     setPaymentOption(e.target.value);
   }
-
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []
   const totalPrice = cartItems.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
