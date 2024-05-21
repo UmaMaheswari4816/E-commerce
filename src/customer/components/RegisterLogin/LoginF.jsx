@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import './RegisterLogin.css'; // Import the CSS file for styling
-//import { HomeCarosal } from "./HomeCarosal";
-
+import { Link } from 'react-router-dom';
 
 const LoginF = () => {
   const [email, setEmail] = useState('');
@@ -81,7 +80,8 @@ const LoginF = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <Link to="/" className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Login</Link>
+        
       </form>
       <div>
 
