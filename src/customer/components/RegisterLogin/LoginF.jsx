@@ -50,7 +50,7 @@ const LoginF = () => {
       body:JSON.stringify(userData)
     }).then(async (resp)=>{
       const data = await resp.json()
-      console.log(data)
+      console.log(resp.status)
       if(data.status === '200') navigate("/")
       else alert(data.message)
     })
@@ -80,7 +80,7 @@ const LoginF = () => {
             required
           />
         </div>
-        <Link to="/" className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Login</Link>
+        <Link to="/" className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600" onClick={handleSubmit}>Login</Link>
         
       </form>
       <div>
