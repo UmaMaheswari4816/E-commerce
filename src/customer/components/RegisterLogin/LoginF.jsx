@@ -89,7 +89,7 @@ const LoginF = () => {
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <div>
             <p>
-                Not have an account yet? <a href="/register" style={{ color: "red" }}>Register</a>
+                Not have an account yet? <a href="/signup" style={{ color: "red" }}>Register</a>
             </p>
         </div>
     </div>

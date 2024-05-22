@@ -101,7 +101,7 @@ export default function Navigation() {
           <Route path="/men" element={<MenProducts />} />
           <Route path="/kids" element={<KidsProducts />} />
           <Route path="/login" element={<LoginF />} />
-          <Route path="/register" element={<RegisterF />} />
+          <Route path="/signup" element={<RegisterF />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/address" element={<AddressPage />} />
