@@ -120,7 +120,8 @@ const AddressPage = () => {
             } else {
               throw new Error("Failed to send order confirmation email");
             }
-            
+            localStorage.removeItem("cartItems");
+            navigate("/");
           })
           .catch((error) => {
             console.error("Error:", error);
@@ -128,8 +129,6 @@ const AddressPage = () => {
           });
       }
     }
-    localStorage.removeItem("cartItems");
-    navigate("/");
   };
 
   const handlePaymentOption = (e) => {
