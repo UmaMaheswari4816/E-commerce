@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './RegisterLogin.css'; // Import the CSS file for styling
 
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 
 const RegisterF = () => {
@@ -15,16 +15,23 @@ const RegisterF = () => {
   const handleClick=(e)=>{
     e.preventDefault()
     const customer={name,phone,email,password,confirmPassword}
-    console.log(customer)
+    console.log(customer);
+    localStorage.setItem('Customer', customer);
+
     console.log("hello")
     fetch("http://localhost:8080/addCustomer",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(customer)
     }).then((resp)=>{
+      console.log(customer.email);
       console.log("new student added");
       if(resp.status===200){
         alert("Register Success");
+
+        // Store the email in local storage
+        localStorage.setItem('registeredEmail', email);
+
         navigate("/login");
       }
       else{

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddressPage = () => {
   const navigate = useNavigate();
@@ -9,33 +9,152 @@ const AddressPage = () => {
     state: "",
     postalCode: "",
     country: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
   });
 
   const [paymentOption, setPaymentOption] = useState("");
+  const [email, setEmail] = useState(""); // State to store the email
 
+  const [errors, setErrors] = useState({}); // State to hold validation errors
+
+  useEffect(() => {
+    // Retrieve the email from local storage
+    const storedEmail = localStorage.getItem("registeredEmail");
+    if (storedEmail) {
+      setEmail(storedEmail);
+      //console.log("Email:", storedEmail); // Print the email to the console
+    }
+  }, []);
+  console.log(email);
   // const history = useHistory();
 
   // Handle place order logic
-  const handlePlaceOrder = () => {
-    if (paymentOption === "cod") {
-      // Display a success message
-      alert("Order placed successfully!");
-      localStorage.removeItem("cartItems")
-      navigate('/');
 
-      
-
-      // Optionally, you can reset the form fields or perform any other actions here
-
-      // Return early to prevent further execution
-      return;
+  const validateForm = () => {
+    const errors = {};
+    if (!formData.streetAddress.trim()) {
+      errors.streetAddress = "Street Address is required";
     }
+    if (!formData.city.trim()) {
+      errors.city = "City is required";
+    }
+    if (!formData.country.trim()) {
+      errors.country = "Country is required";
+    }
+    if (!formData.postalCode.trim()) {
+      errors.postalCode = "Postal Code is required";
+    }
+    if (!paymentOption) {
+      errors.paymentOption = "Payment Mode is required";
+    }
+
+    // Validate credit card details if payment option is credit
+    if (paymentOption === "credit") {
+      if (formData.cardNumber.trim().length !== 16) {
+        errors.cardNumber = "Card Number must be 16 digits";
+      }
+      // Validate expiration date
+      // Example: Check if expiration date is not in the past
+      const currentDate = new Date();
+      const expiryDate = new Date(formData.expiryDate);
+      if (expiryDate < currentDate) {
+        errors.expiryDate = "Expiration Date must be in the future";
+      }
+      if (formData.cvv.trim().length !== 3) {
+        errors.cvv = "CVV must be 3 digits";
+      }
+    }
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handlePlaceOrder = () => {
+    //if (paymentOption === "cod" || "credit") {
+    // Display a success message
+    //alert("Order placed successfully!");
+    //console.log(email);
+    //fetch("http://localhost:8080/mail/${email}",{
+    //method:"POST",
+    //headers:{"Content-Type":"application/json"},
+    //body:JSON.stringify(email)
+    //})
+    //.then(response => {
+    // if (response.ok) {
+    // alert("Order confirmation email sent successfully!");
+    //localStorage.removeItem("cartItems");
+    //navigate('/');
+    //} else {
+    //  throw new Error("Failed to send order confirmation email");
+    //}
+    //})
+    //.catch(error => {
+    //  console.error("Error:", error);
+    //alert("Failed to send order confirmation email. Please try again.");
+    //});
+
+    //localStorage.removeItem("cartItems")
+    //navigate('/');
+
+    // Optionally, you can reset the form fields or perform any other actions here
+
+    // Return early to prevent further execution
+
+    //return;
+    const isValid = validateForm();
+    if (isValid) {
+      if (paymentOption === "cod" || paymentOption === "credit") {
+        alert("Order placed successfully!");
+        fetch(`http://localhost:8080/mail/${email}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(email),
+        })
+          .then((response) => {
+            
+            if (response.ok) {
+              alert("Order confirmation email sent successfully!");
+              
+            } else {
+              throw new Error("Failed to send order confirmation email");
+            }
+            
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Failed to send order confirmation email. Please try again.");
+          });
+      }
+    }
+    localStorage.removeItem("cartItems");
+    navigate("/");
   };
 
   const handlePaymentOption = (e) => {
-    setPaymentOption(e.target.value);
-  }
-  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []
+    const selectedPaymentOption = e.target.value;
+    setPaymentOption(selectedPaymentOption);
+
+    setErrors({
+      ...errors,
+      paymentOption: "",
+    });
+
+    if (selectedPaymentOption !== "credit") {
+      setFormData({
+        ...formData,
+        cardNumber: "",
+        expiryDate: "",
+        cvv: "",
+      });
+    }
+  };
+
+  // State for showing credit card form
+  const [showCreditCardForm, setShowCreditCardForm] = useState(false);
+
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   const totalPrice = cartItems.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
@@ -46,7 +165,7 @@ const AddressPage = () => {
     subtotal: 100,
     discount: 0,
     shipping: 50,
-    total: 150
+    total: 150,
   });
 
   // useEffect to update orderDetails when totalPrice changes
@@ -57,6 +176,11 @@ const AddressPage = () => {
     setFormData({
       ...formData,
       [name]: value,
+    });
+
+    setErrors({
+      ...errors,
+      [name]: "",
     });
   };
 
@@ -84,8 +208,14 @@ const AddressPage = () => {
                 value={formData.streetAddress}
                 onChange={handleChange}
                 autoComplete="street-address"
-                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                required
+                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ${errors.streetAddress ? 'border-red-500' : ''}`}"
               />
+              {errors.streetAddress && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.streetAddress}
+                </p>
+              )}
               <label
                 htmlFor="city"
                 className="block text-sm font-medium text-gray-700"
@@ -99,8 +229,12 @@ const AddressPage = () => {
                 value={formData.city}
                 onChange={handleChange}
                 autoComplete="city"
-                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                required
+                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ${errors.city ? 'border-red-500' : ''}`}"
               />
+              {errors.city && (
+                <p className="text-red-500 text-sm mt-1">{errors.city}</p>
+              )}
               <label
                 htmlFor="postalCode"
                 className="block text-sm font-medium text-gray-700"
@@ -114,8 +248,12 @@ const AddressPage = () => {
                 value={formData.postalCode}
                 onChange={handleChange}
                 autoComplete="postalCode"
-                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                required
+                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ${errors.postalcode ? 'border-red-500' : ''}`}"
               />
+              {errors.postalCode && (
+                <p className="text-red-500 text-sm mt-1">{errors.postalCode}</p>
+              )}
               <label
                 htmlFor="country"
                 className="block text-sm font-medium text-gray-700"
@@ -129,8 +267,12 @@ const AddressPage = () => {
                 value={formData.country}
                 onChange={handleChange}
                 autoComplete="country"
-                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                required
+                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ${errors.country ? 'border-red-500' : ''}`}"
               />
+              {errors.country && (
+                <p className="text-red-500 text-sm mt-1">{errors.country}</p>
+              )}
             </div>
           </form>
         </div>
@@ -208,27 +350,102 @@ const AddressPage = () => {
                     type="radio"
                     value="credit"
                     checked={paymentOption === "credit"}
-                    onChange={handleChange}
+                    onChange={handlePaymentOption}
                   />{" "}
                   &nbsp;&nbsp;&nbsp;&nbsp; Credict Card
                 </label>
+                {/* Credit card form */}
+                {paymentOption === "credit" && (
+                  <div className="w-1/2 pr-4 border rounded-md p-4">
+                    {/* <h3 className="text-lg font-semibold mb-2">Credit Card Details</h3>*/}
+                    <form>
+                      <div className="mb-4">
+                        <label
+                          htmlFor="cardNumber"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          Card Number
+                        </label>
+                        <input
+                          type="text"
+                          minLength={16}
+                          maxLength={16}
+                          id="cardNumber"
+                          name="cardNumber"
+                          value={formData.cardNumber}
+                          onChange={handleChange}
+                          autoComplete="cc-number"
+                          required={paymentOption === "credit"}
+                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ${errors.cardNumber ? 'border-red-500' : ''}"
+                        />
+                        {errors.cardNumber && <p className="text-red-500 text-sm mt-1">{errors.cardNumber}</p>}
+                      </div>
+                      <div className="mb-4">
+                        <label
+                          htmlFor="expiryDate"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          Expiry Date
+                        </label>
+                        <input
+                          type="date"
+                          id="expiryDate"
+                          name="expiryDate"
+                          value={formData.expiryDate}
+                          onChange={handleChange}
+                          autoComplete="expiryDate"
+                          required={paymentOption === "credit"}
+                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ${errors.expiryDate ? 'border-red-500' : ''}`}"
+                        />
+                        {errors.expiryDate && <p className="text-red-500 text-sm mt-1">{errors.expiryDate}</p>}
+                      </div>
+                      <div className="mb-4">
+                        <label
+                          htmlFor="cvv"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          CVV
+                        </label>
+                        <input
+                          type="text"
+                          id="cvv"
+                          name="cvv"
+                          minLength={3}
+                          maxLength={3}
+                          value={formData.cvv}
+                          onChange={handleChange}
+                          autoComplete="cvv"
+                          required={paymentOption === "credit"}
+                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ${errors.cvv ? 'border-red-500' : ''}`}"
+                         
+                        />
+                        {errors.cvv && <p className="text-red-500 text-sm mt-1">{errors.cvv}</p>}
+                      </div>
+                    </form>
+                  </div>
+                )}
               </div>
               <br />
+
               <div>
                 <label>
                   <input
                     type="radio"
                     checked={paymentOption === "emi"}
                     value="emi"
-                    onChange={handleChange}
+                    onChange={handlePaymentOption}
                   />{" "}
                   &nbsp;&nbsp;&nbsp;&nbsp; EMI
                 </label>
               </div>
             </div>
           </form>
+          {errors.paymentOption && (
+            <p className="text-red-500 text-sm mt-1">{errors.paymentOption}</p>
+          )}
         </div>
       </div>
+
       {/* Order details (items, quantities, prices, discounts, shipping charges) 
       <div className="mt-8 border rounded-md p-4">
         <h2 className="text-2xl font-bold mb-4">Order Details</h2>
@@ -252,14 +469,12 @@ const AddressPage = () => {
       </div> 
   Place order button  */}
       <div className="flex justify-center mt-8">
-      
         <button
           onClick={handlePlaceOrder}
           className="bg-blue-500 text-white px-8 py-3 rounded-md hover:bg-green-600"
         >
           Place Order
         </button>
-    
       </div>
     </div>
   );
