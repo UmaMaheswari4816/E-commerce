@@ -44,7 +44,7 @@ const LoginF = () => {
     // else alert(resp.data.message);
     //});
 
-    fetch("http://localhost:8080/login",{
+    fetch("http://172.172.194.196:8080/login",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(userData)

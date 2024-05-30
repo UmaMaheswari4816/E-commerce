@@ -13,21 +13,32 @@ const AddressPage = () => {
     expiryDate: "",
     cvv: "",
   });
+  
 
   const [paymentOption, setPaymentOption] = useState("");
-  const [email, setEmail] = useState(""); // State to store the email
+  //const [email, setEmail] = useState(""); // State to store the email
+   
+  const [customer,serCustomer]=useState("");
+  const email = localStorage.getItem(customer.email);
+  const name= localStorage.getItem(customer.name);
+  const phone = localStorage.getItem(customer.phone);
+  const password= localStorage.getItem(customer.password);
+  const confirmPassword = localStorage.getItem(customer.confirmPassword);
 
+
+  const customerDetails={name,phone,email,password,confirmPassword}
+ 
   const [errors, setErrors] = useState({}); // State to hold validation errors
-
-  useEffect(() => {
+  console.log(customer.email)
+  //useEffect(() => {
     // Retrieve the email from local storage
-    const storedEmail = localStorage.getItem("registeredEmail");
-    if (storedEmail) {
-      setEmail(storedEmail);
+    //const storedEmail = localStorage.getItem("Customer");
+   // if (storedEmail) {
+      //setEmail(storedEmail);
       //console.log("Email:", storedEmail); // Print the email to the console
-    }
-  }, []);
-  console.log(email);
+    //}
+  //}, []);
+  //console.log(email);
   // const history = useHistory();
 
   // Handle place order logic
@@ -107,7 +118,7 @@ const AddressPage = () => {
     if (isValid) {
       if (paymentOption === "cod" || paymentOption === "credit") {
         alert("Order placed successfully!");
-        fetch(`http://localhost:8080/mail/${email}`, {
+        fetch(`http://localhost:8080/mail?email=${email}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(email),
