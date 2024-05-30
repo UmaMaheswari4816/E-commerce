@@ -84,7 +84,7 @@ const AddressPage = () => {
     if (isValid) {
       if (paymentOption === "cod" || paymentOption === "credit") {
         alert("Order placed successfully!");
-        fetch(`http://172.172.194.186:8080/mail`, {
+        fetch(`http://172.172.194.196:8080/mail`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: localStorage.getItem("email") }),
