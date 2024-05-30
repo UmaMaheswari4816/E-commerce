@@ -19,7 +19,7 @@ const RegisterF = () => {
     localStorage.setItem('Customer', customer);
 
     console.log("hello")
-    fetch("http://172.172.194.196:3000/addCustomer",{
+    fetch("http://172.172.194.196:8080/addCustomer",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(customer)
