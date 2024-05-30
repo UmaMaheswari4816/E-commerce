@@ -28,11 +28,6 @@ const RegisterF = () => {
       console.log("new student added");
       if(resp.status===200){
         alert("Register Success");
-
-        // Store the email in local storage
-        localStorage.setItem('email', email);
-
-
         navigate("/login");
       }
       else{
