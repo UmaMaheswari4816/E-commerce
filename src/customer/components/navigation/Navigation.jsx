@@ -1,26 +1,35 @@
-
-import { Fragment, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
-import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { UserCircleIcon } from '@heroicons/react/24/outline'; 
-import { BrowserRouter as Router, Routes, Route ,Link} from 'react-router-dom';
-import WomenProducts from '../Products/WomenProducts';
-import MenProducts from '../Products/MenProducts';
-import KidsProducts from '../Products/KidsProducts';
-import LoginF from '../RegisterLogin/LoginF';
-import RegisterF from '../RegisterLogin/RegisterF';
-import HomeCarosal from '../homeCarosal/HomeCarosal';
-import CartPage from '../Cart/CartPage';
-import UserProfile from '../Profile/UserProfile';
-import HomePage from '../../pages/homepage/HomePage';
-import AddressPage from '../Address/AddressPage';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 export default function Navigation() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Check if the user is logged in
+    const userLoggedIn = localStorage.getItem('email');
+    if (userLoggedIn) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [pathname]);
+
+  const handleLogout = () => {
+    // Clear login status and redirect to login page
+    localStorage.removeItem('email');
+    setIsLoggedIn(false);
+    navigate("/login")
+  };
   
 
   
   return (
-    <Router>
       <div className="bg-white">
       <header className="relative bg-white">
          <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">           Get free delivery on orders over 500 rupees         </p>
@@ -67,9 +76,11 @@ export default function Navigation() {
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
  
-                  <Link to="/login">
-                  <UserCircleIcon className="h-8 w-8" aria-hidden="true" /></Link>
-                 {/* <Link to="/profile">Profile</Link>*/}
+                  {/* <Link to="/login"> */}
+                  {/* <UserCircleIcon className="h-8 w-8" aria-hidden="true" /></Link> */}
+                 {isLoggedIn ? 
+                  (<p onClick={handleLogout}>Logout</p>):(<p onClick={() => navigate("/login")}>Login</p>) 
+                }
                 </div>
 
                 
@@ -79,10 +90,7 @@ export default function Navigation() {
               <div className="ml-4 flow-root lg:ml-6">
 
                 <Link to="/cart">
-                {/*<ShoppingBagIcon
-                    className="h-8 w-8 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                    aria-hidden="true"
-  />*/}           
+                 
                   <ShoppingBagIcon className="h-8 w-8" aria-hidden="true" />
                   
                   <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"></span>
@@ -94,21 +102,6 @@ export default function Navigation() {
           </div>
         </nav>
       </header>
-        
-        <Routes>
-          <Route path="/" element={<HomePage/>} />
-          <Route path="/women" element={<WomenProducts />} />
-          <Route path="/men" element={<MenProducts />} />
-          <Route path="/kids" element={<KidsProducts />} />
-          <Route path="/login" element={<LoginF />} />
-          <Route path="/signup" element={<RegisterF />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/address" element={<AddressPage />} />
-
-    
-        </Routes>
       </div>
-    </Router>
   );
 }

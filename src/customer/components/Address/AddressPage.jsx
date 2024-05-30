@@ -13,26 +13,23 @@ const AddressPage = () => {
     expiryDate: "",
     cvv: "",
   });
+
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    if(!email) navigate("/login");
+  }, [navigate])
   
 
   const [paymentOption, setPaymentOption] = useState("");
-  //const [email, setEmail] = useState(""); // State to store the email
    
-  const [customer,serCustomer]=useState("");
-  const email = localStorage.getItem(customer.email);
-  const name= localStorage.getItem(customer.name);
-  const phone = localStorage.getItem(customer.phone);
-  const password= localStorage.getItem(customer.password);
-  const confirmPassword = localStorage.getItem(customer.confirmPassword);
 
 
-  const customerDetails={name,phone,email,password,confirmPassword}
+  
  
   const [errors, setErrors] = useState({}); // State to hold validation errors
-  console.log(customer.email)
   //useEffect(() => {
     // Retrieve the email from local storage
-    //const storedEmail = localStorage.getItem("Customer");
+    //const storedEmail = localStorage.getItem(email);
    // if (storedEmail) {
       //setEmail(storedEmail);
       //console.log("Email:", storedEmail); // Print the email to the console
@@ -83,45 +80,14 @@ const AddressPage = () => {
   };
 
   const handlePlaceOrder = () => {
-    //if (paymentOption === "cod" || "credit") {
-    // Display a success message
-    //alert("Order placed successfully!");
-    //console.log(email);
-    //fetch("http://localhost:8080/mail/${email}",{
-    //method:"POST",
-    //headers:{"Content-Type":"application/json"},
-    //body:JSON.stringify(email)
-    //})
-    //.then(response => {
-    // if (response.ok) {
-    // alert("Order confirmation email sent successfully!");
-    //localStorage.removeItem("cartItems");
-    //navigate('/');
-    //} else {
-    //  throw new Error("Failed to send order confirmation email");
-    //}
-    //})
-    //.catch(error => {
-    //  console.error("Error:", error);
-    //alert("Failed to send order confirmation email. Please try again.");
-    //});
-
-    //localStorage.removeItem("cartItems")
-    //navigate('/');
-
-    // Optionally, you can reset the form fields or perform any other actions here
-
-    // Return early to prevent further execution
-
-    //return;
     const isValid = validateForm();
     if (isValid) {
       if (paymentOption === "cod" || paymentOption === "credit") {
         alert("Order placed successfully!");
-        fetch(`http://localhost:8080/mail?email=${email}`, {
+        fetch(`http://172.172.194.186:8080/mail`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(email),
+          body: JSON.stringify({ email: localStorage.getItem("email") }),
         })
           .then((response) => {
             
@@ -161,22 +127,11 @@ const AddressPage = () => {
     }
   };
 
-  // State for showing credit card form
-  const [showCreditCardForm, setShowCreditCardForm] = useState(false);
-
   const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   const totalPrice = cartItems.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
   console.log(totalPrice);
-
-  // State for order details
-  const [orderDetails, setOrderDetails] = useState({
-    subtotal: 100,
-    discount: 0,
-    shipping: 50,
-    total: 150,
-  });
 
   // useEffect to update orderDetails when totalPrice changes
 
@@ -289,44 +244,7 @@ const AddressPage = () => {
 
         <div className="w-1/2 pl-4 border rounded-md p-4">
           <h3 className="text-lg font-semibold mb-2">Mode Of Payment </h3>
-          {/*<div><div className="mb-4">
-              <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-700">Card Number</label>
-              <input
-                type="text"
-                id="cardNumber"
-                name="cardNumber"
-                value={formData.cardNumber}
-                onChange={handleChange}
-                autoComplete="cc-number"
-                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="expiryDate" className="block text-sm font-medium text-gray-700">Expairy Date</label>
-              <input
-                type="text"
-                id="expiryDate"
-                name="expiryDate"
-                value={formData.expiryDate}
-                onChange={handleChange}
-                autoComplete="expiryDate"
-                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="cvv" className="block text-sm font-medium text-gray-700">CVV</label>
-              <input
-                type="text"
-                id="cvv"
-                name="cvv"
-                value={formData.cardNumber}
-                onChange={handleChange}
-                autoComplete="cvv"
-                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-              />
-            </div>
-
-  </div>*/}
+          
 
           <form>
             <div>

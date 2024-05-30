@@ -108,11 +108,7 @@ const CartPage = () => {
               </li>
             ))}
           </ul>
-          {/*<div className="flex justify-between mt-4">
-            <p className="font-semibold">Total: ₹{totalPrice}</p>
-            <Link to={{ pathname: "/address", state: { data: dataToSend }} }className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Checkout</Link>
-          </div> */
-          }
+          
         </>
       )}
       <div className="mt-8 border rounded-md p-4">

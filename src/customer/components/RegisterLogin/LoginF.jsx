@@ -1,11 +1,10 @@
 
 import React, { useState } from 'react';
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import './RegisterLogin.css'; // Import the CSS file for styling
 import { Link } from 'react-router-dom';
 
-const LoginF = () => {
+const LoginF = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -38,20 +37,20 @@ const LoginF = () => {
     setError('');
 
     const userData={email,password}
-    //axios.post("http://localhost:8080/login",data).then((resp) => {
-    // console.log(resp.data);
-    // if (resp.data === '200') navigate("/home");
-    // else alert(resp.data.message);
-    //});
-
-    fetch("http://172.172.194.196:8080/login",{
+    
+    fetch("http://172.172.194.186:8080/login",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(userData)
     }).then(async (resp)=>{
       const data = await resp.json()
       console.log(resp.status)
-      if(data.status === '200') navigate("/")
+      if(data.email) {
+
+        localStorage.setItem("email", data.email)
+        navigate("/")
+
+      }
       else alert(data.message)
     })
     
